@@ -1,4 +1,4 @@
-# conversor_moedas-vue
+# Conversor_moedas-vue
 
 Projeto de conversor de moedas utilizando a API currencyconverterapi utilizando o framework Vue JS.
 
