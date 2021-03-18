@@ -10,7 +10,6 @@
         <Conversor moeda-a="BRL" moeda-b="EUR"></Conversor>
         <Conversor moeda-a="BRL" moeda-b="JPY"></Conversor>
     </div>
-
   </div>
 </template>
 

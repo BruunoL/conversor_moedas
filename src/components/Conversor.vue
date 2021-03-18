@@ -1,11 +1,11 @@
 <template>
-    <div class="conversor">
+    <div class="conversor" v-on="getCotacao">
 
         <h2 class="title">{{moedaA}} para {{moedaB}}</h2>
         <input type="text" class="search-bar" v-model="moedaA_value" :placeholder="moedaA">
         <button class="button" v-on:click="converter">Converter</button>
         <h2 class="valor">{{moedaB_value}}</h2>
-
+        <p v-if="moedaA != 'BRL'">{{moedaA}}: {{cotacao}}</p>
     </div>
 </template>
 
@@ -16,8 +16,12 @@
         data(){
             return {
                 moedaA_value: "",
-                moedaB_value: 0
+                moedaB_value: 0,
+                cotacao: 0
             };
+        },
+        beforeMount() {
+            this.getCotacao()
         },
         methods:{
             converter() {
@@ -26,9 +30,21 @@
                 fetch(url).then(res => {
                     return res.json();
                 }).then(json => {
-                        let cotacao = json[de_para].val;
-                        this.moedaB_value = (cotacao * parseFloat(this.moedaA_value)).toFixed(2);
-                    })
+                    let cotacao = json[de_para].val;
+                    this.moedaB_value = (cotacao * parseFloat(this.moedaA_value)).toFixed(2);
+                })
+            },
+
+            getCotacao() {
+                let de_para = this.moedaA + "_" + this.moedaB;
+                let url = "http://free.currencyconverterapi.com/api/v5/convert?q=" + de_para + "&compact=y&apiKey=515ce8836bb3907a90fe";
+                fetch(url).then(res => {
+                    return res.json();
+                }).then(json => {
+                    if (this.moedaA != 'BRL') {
+                        this.cotacao = parseFloat(json[de_para].val).toFixed(2);
+                    }
+                })
             }
         }
     };
@@ -87,6 +103,13 @@
 
 .conversor .button:hover {
     border: 1px solid orangered;
+}
+
+.conversor p {
+    margin: 0;
+    padding: 0;
+    text-align: start;
+    font-weight: bold;
 }
 
 </style>
