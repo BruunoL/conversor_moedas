@@ -1,32 +1,44 @@
 <template>
   <div id="app">
-    <h1>Conversor de Moedas</h1>
-    <div class="box">
-        <Conversor moeda-a="USD" moeda-b="BRL"></Conversor>
-        <Conversor moeda-a="EUR" moeda-b="BRL"></Conversor>
-        <Conversor moeda-a="JPY" moeda-b="BRL"></Conversor>
+   <main>
+		<h1>Conversor de Moedas</h1>
+		<div class="box">
+			<Conversor moeda-a="USD" moeda-b="BRL"></Conversor>
+			<Conversor moeda-a="EUR" moeda-b="BRL"></Conversor>
+			<Conversor moeda-a="JPY" moeda-b="BRL"></Conversor>
 
-        <Conversor moeda-a="BRL" moeda-b="USD"></Conversor>
-        <Conversor moeda-a="BRL" moeda-b="EUR"></Conversor>
-        <Conversor moeda-a="BRL" moeda-b="JPY"></Conversor>
-    </div>
+			<Conversor moeda-a="BRL" moeda-b="USD"></Conversor>
+			<Conversor moeda-a="BRL" moeda-b="EUR"></Conversor>
+			<Conversor moeda-a="BRL" moeda-b="JPY"></Conversor>
+		</div>
+	</main>
+	<Footer />
   </div>
 </template>
 
 <script>
 import Conversor from "./components/Conversor.vue";
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    Conversor
+    Conversor,
+	Footer
   }
 }
 </script>
 
 <style>
-body {
-    font-family: 'Saira Condensed',sans-serif;
+@font-face {
+    font-family: 'Saira Condensed';
+    src: url('assets/fonts/SairaCondensed-Regular.ttf') format('truetype');
+}
+
+body{
+    font-family: 'Saira Condensed', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 #app h1 {
